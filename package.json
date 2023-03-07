@@ -1,5 +1,5 @@
 {
-  "name": "ppt-customfields",
+  "name": "strapi-plugin-ppt-customfields",
   "version": "0.0.2",
   "description": "A plugin where we will encapsulate all the custom fields we will release.",
   "strapi": {
