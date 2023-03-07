@@ -1,3 +1,5 @@
 # Strapi plugin ppt-customfields
 
-A quick description of ppt-customfields.
+
+Strapi Plugin to encapsulate all custom fields we will crate
+
