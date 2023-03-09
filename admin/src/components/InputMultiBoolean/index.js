@@ -1,14 +1,30 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { 
   ToggleInput,  
   Flex,
   Grid,
   GridItem,
+  Stack,
+  Typography,
+  Field,
+  FieldHint,
+  FieldError,
+  FieldLabel,
+  FieldInput
 } from '@strapi/design-system';
 
-const InputMultiBoolean = ({ name, onChange, value, options, attribute, required }) => {
+const InputMultiBoolean = ({ name, onChange, value, options, attribute, required, error, description, intlLabel, labelAction }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const { formatMessage } = useIntl();
+
+  const div = styled.div`
+    margin-top:20px;
+    margin-bottom: 30px;
+  `
 
   // Load options from Content Type Builder and transform them to include label and value properties
   options = useMemo(() => {
@@ -52,23 +68,39 @@ const InputMultiBoolean = ({ name, onChange, value, options, attribute, required
     return selectedOption !== undefined;
   };
 
-
   return (
-    <Grid gap={4}>
-      {options.map((option) => (
-        <GridItem s={12} col={4}>
-          <ToggleInput
-            key={option.value}
-            name={`${name}_${option.value}`}
-            label={option.label}
-            offLabel= {attribute['options'].offText}
-            onLabel= {attribute['options'].onText}
-            onChange={(e) => handleOptionChange(option, e.target.checked)}
-            checked={isChecked(option.label)}
-          />
-        </GridItem>
-      ))}
-    </Grid>
+     <Field
+      name={name}
+      id={name}
+      // GenericInput calls formatMessage and returns a string for the error
+      error={error}
+      hint={description && formatMessage(description)}
+      required={required}>
+
+        <Stack spacing={1}>
+          
+          <FieldLabel action={labelAction}>{formatMessage(intlLabel)}</FieldLabel>
+          <div></div>
+          <hr/>
+            <Grid gap={4}>
+              {options.map((option) => (
+                <GridItem s={12} col={4}>
+                  <ToggleInput
+                    key={option.value}
+                    name={`${name}_${option.value}`}
+                    label={option.label}
+                    offLabel= {attribute['options'].offText}
+                    onLabel= {attribute['options'].onText}
+                    onChange={(e) => handleOptionChange(option, e.target.checked)}
+                    checked={isChecked(option.label)}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
+          <FieldHint />
+          <FieldError />
+        </Stack>
+      </Field>
   );
 };
 
