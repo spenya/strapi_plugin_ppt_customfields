@@ -6,6 +6,7 @@ import {
   TextInput,  
   Flex,
   Grid,
+  Box,
   GridItem,
   Label,
   Stack,
@@ -24,6 +25,17 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
   var hours = Math.floor(value/60);
   var minutes = value % 60;
 
+  const FormatMinutes = (m) => {
+
+        if(m<10)
+        {
+            m = "0" + m.toString();
+        }
+        m = m.toString();
+        
+        return m;
+  }
+
   // Handle toggle input change and update selectedOptions state
   const handleChange = (label, val) => {
     
@@ -39,7 +51,11 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
     }
     else if(label== "minutes")
     {
-      if(val>59) val=59;
+      if(val>59)
+      {
+        hours += Math.floor(val/60); 
+        val = val%60;
+      }
       minutes = val;
     }
 
@@ -47,6 +63,8 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
     if(isNaN(minutes) || minutes=="" || minutes==undefined) minutes=0;
 
     minutes = parseInt(minutes);
+
+  
     hours = parseInt(hours);
 
 
@@ -54,7 +72,12 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
     // Convert selectedOptions to array of labels and call onChange with the new value
     const newValue = parseInt(hours * 60, 10) + parseInt(minutes,10)
     onChange({ target: { name, value: newValue } });
+
   };
+
+
+
+
 
   return (
      <Field
@@ -65,31 +88,25 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
       hint={description && formatMessage(description)}
       required={required}>
         <Stack spacing={1}>
-          <FieldLabel action={labelAction}>{formatMessage(intlLabel)} </FieldLabel>
-          <Grid gap={4}>
-            <GridItem s={5} col={5}>
-              <TextInput   
-                value={hours} 
-                aria-label="&nbsp;"
-                step={1}
-                onChange={(e) => handleChange("hours", e.target.value)} /> 
-            </GridItem>
-            <GridItem s={2} col={2}>
-              <FieldLabel>h :</FieldLabel>
-            </GridItem>
-            <GridItem s={5} col={5}>
-              <TextInput 
-                value={minutes} 
-                aria-label="&nbsp;"
-                step={1}
-                onChange={(e) => handleChange("minutes", e.target.value)} />
-          </GridItem>
-          <GridItem s={1} col={1}>
-              <FieldLabel>m</FieldLabel>
-            </GridItem>
-          </Grid>
-          <FieldHint/>
-          <FieldError/>
+            <FieldLabel action={labelAction}>{formatMessage(intlLabel)} </FieldLabel>
+                    <Flex marginTop={1}>
+                        <TextInput   
+                            value={hours} 
+                            aria-label="&nbsp;"
+                            onChange={(e) => handleChange("hours", e.target.value)} />
+                        <Box paddingRight={1} paddingLeft={1}>
+                            <Typography as="label" textColor="neutral600">
+                                : 
+                            </Typography>
+                        </Box>
+                        <TextInput 
+                            value={FormatMinutes(minutes)} 
+                            aria-label="&nbsp;"
+                            onChange={(e) => handleChange("minutes", e.target.value)} />
+                    </Flex>
+                
+            <FieldHint/>
+            <FieldError/>
         </Stack>
       </Field>
   );

@@ -5,6 +5,8 @@ import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import Initializer from './components/Initializer';
 import PluginIcon from './components/PluginIcon';
+import InputDurationIcon from './components/InputDurationIcon';
+import InputMultiBooleanIcon from './components/InputMultiBooleanIcon';
 
 const name = pluginPkg.strapi.name;
 
@@ -15,6 +17,7 @@ export default {
 		app.customFields.register({
 			name: "multiboolean",
 			pluginId: "ppt-customfields",
+			icon: InputMultiBooleanIcon,
 			type: "json",
 			intlLabel: {
 				id: "ppt-customfields.multiboolean.label",
@@ -24,7 +27,6 @@ export default {
 				id: "ppt-customfields.multiboolean.description",
 				defaultMessage: "Custom field for multiple boolean selection",
 			},
-			icon: PluginIcon,
 			components: {
 				Input: async () => import( /* webpackChunkName: "input-component" */ "./components/InputMultiBoolean"),
 			},
@@ -97,7 +99,7 @@ export default {
 				id: "ppt-customfields.duration.description",
 				defaultMessage: "Custom field for time duration",
 			},
-			icon: PluginIcon,
+			icon: InputDurationIcon,
 			components: {
 				Input: async () => import( /* webpackChunkName: "input-component" */ "./components/InputDuration"),
 			},

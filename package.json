@@ -1,10 +1,10 @@
 {
   "name": "strapi-plugin-ppt-customfields",
-  "version": "1.0.4 ",
+  "version": "1.0.7",
   "description": "A plugin where we will encapsulate all the custom fields we will release.",
   "strapi": {
     "name": "ppt-customfields",
-    "description": "PPT Customfields - Includes MultiBolean Input. ",
+    "description": "PPT Customfields - Includes MultiBolean Input & DurationInput (hh:mm)",
     "kind": "plugin",
     "displayName": "PPT Customfields"
   },
@@ -38,12 +38,8 @@
     "strapi",
     "customfield",
     "customfields",
-    "customitzation",
-    "headless",
-    "cms",
-    "plugin",
     "multiboolean",
-    "boolean"
+    "duration"
   ],
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
