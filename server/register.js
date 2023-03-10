@@ -7,4 +7,9 @@ module.exports = ({ strapi }) => {
     plugin: 'ppt-customfields',
     type: 'json',
   });
+   strapi.customFields.register({
+    name: 'duration',
+    plugin: 'ppt-customfields',
+    type: 'integer',
+  });
 };

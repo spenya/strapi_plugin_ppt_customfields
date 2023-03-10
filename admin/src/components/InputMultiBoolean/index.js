@@ -20,12 +20,7 @@ const InputMultiBoolean = ({ name, onChange, value, options, attribute, required
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const { formatMessage } = useIntl();
-
-  const div = styled.div`
-    margin-top:20px;
-    margin-bottom: 30px;
-  `
-
+  
   // Load options from Content Type Builder and transform them to include label and value properties
   options = useMemo(() => {
     return (attribute['options'].list || []).map((option, index) => {
@@ -76,9 +71,7 @@ const InputMultiBoolean = ({ name, onChange, value, options, attribute, required
       error={error}
       hint={description && formatMessage(description)}
       required={required}>
-
         <Stack spacing={1}>
-          
           <FieldLabel action={labelAction}>{formatMessage(intlLabel)}</FieldLabel>
           <div></div>
           <hr/>

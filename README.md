@@ -11,6 +11,15 @@ You can define the on and off text for the toggleButtons (true-false, Yes-No), a
 The Api returns you an array of the ON items.
 
 
+### Duration
+
+It allows to create a field for duration in hh:mm
+
+
+
+
+
+
 
 
 
