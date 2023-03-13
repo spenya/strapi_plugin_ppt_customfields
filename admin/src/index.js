@@ -86,7 +86,6 @@ export default {
 			}
 		});
 
-
 		app.customFields.register({
 			name: "duration",
 			pluginId: "ppt-customfields",
@@ -103,7 +102,20 @@ export default {
 			components: {
 				Input: async () => import( /* webpackChunkName: "input-component" */ "./components/InputDuration"),
 			},
-			options: {}
+			options: {advanced: [{
+						name: 'options.withSeconds',
+						type: 'checkbox',
+						intlLabel: {
+							id: 'ppt-customfields.duration.has-seconds-title',
+							defaultMessage: 'With seconds field.',
+						},
+						description: {
+							id: 'ppt-customfields.duration.has-seconds-description',
+							defaultMessage: 'True or false',
+						},
+						
+					}]}
+
 		});
 
 

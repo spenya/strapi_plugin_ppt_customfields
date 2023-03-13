@@ -18,7 +18,6 @@ const InputMultiBooleanIcon = () => {
     <IconBox justifyContent="center" alignItems="center" width={7} height={6} hasRadius aria-hidden>
       <Icon  as={Boolean} />
     </IconBox>
-    
   );
 };
 

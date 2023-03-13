@@ -20,60 +20,78 @@ import {
 
 const InputDuration = ({ name, onChange, value, options, attribute, required, error, description, intlLabel, labelAction }) => {
   
-  const { formatMessage } = useIntl();
+    const { formatMessage } = useIntl();
+    var hours = Math.floor(value/3600);
+    let restSeconds =  value % 3600;
+    var minutes = Math.floor(restSeconds/60);
+    var seconds = restSeconds % 60;
 
-  var hours = Math.floor(value/60);
-  var minutes = value % 60;
+    var withSeconds = attribute['options'].withSeconds;
+    if(withSeconds == undefined) withSeconds = false;
 
-  const FormatMinutes = (m) => {
+    console.log("withSeconds: " + withSeconds);
+            
+                        
+    const FormatLeadingZeros = (m) => {
 
         if(m<10)
         {
             m = "0" + m.toString();
         }
         m = m.toString();
-        
+
         return m;
-  }
+    }
 
   // Handle toggle input change and update selectedOptions state
-  const handleChange = (label, val) => {
+    const handleChange = (label, val) => {
     
-    console.log(label + " >> " + val);
-    /*
-    if(val<0) val=0;
-    if(isNaN(val)) val=0;
-    */
+        console.log(label + " >> " + val);
+        /*
+        if(val<0) val=0;
+        if(isNaN(val)) val=0;
+        */
 
-    if(label == "hours")
-    {
-      hours = val;
-    }
-    else if(label== "minutes")
-    {
-      if(val>59)
-      {
-        hours += Math.floor(val/60); 
-        val = val%60;
-      }
-      minutes = val;
-    }
+        if(label == "hours")
+        {
+          hours = val;
+        }
+        else if(label== "minutes")
+        {
+          if(val>59)
+          {
+            /*
+            hours += Math.floor(val/60); 
+            val = val%60;
+            */
+            val = 59;
+          }
+          minutes = val;
+        }
+        else if(label== "seconds")
+        {
+          if(val>59)
+          {
+            val = 59;
+          }
+          seconds = val;
+        }
 
-    if(isNaN(hours) || hours=="" || hours==undefined)  hours=0;
-    if(isNaN(minutes) || minutes=="" || minutes==undefined) minutes=0;
+        if(isNaN(hours) || hours=="" || hours==undefined)  hours=0;
+        if(isNaN(minutes) || minutes=="" || minutes==undefined) minutes=0;
+        if(isNaN(seconds) || seconds=="" || seconds==undefined) seconds=0;
 
-    minutes = parseInt(minutes);
-
-  
-    hours = parseInt(hours);
-
+        seconds = parseInt(seconds);
+        minutes = parseInt(minutes);
+        hours = parseInt(hours);
 
 
-    // Convert selectedOptions to array of labels and call onChange with the new value
-    const newValue = parseInt(hours * 60, 10) + parseInt(minutes,10)
-    onChange({ target: { name, value: newValue } });
 
-  };
+        // Convert selectedOptions to array of labels and call onChange with the new value
+        const newValue = parseInt(hours * 3600, 10) + parseInt(minutes * 60,10) + parseInt(seconds,10)
+        onChange({ target: { name, value: newValue } });
+
+      };
 
 
 
@@ -92,17 +110,32 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
                     <Flex marginTop={1}>
                         <TextInput   
                             value={hours} 
-                            aria-label="&nbsp;"
-                            onChange={(e) => handleChange("hours", e.target.value)} />
+                            aria-label='&nbsp;'
+                            onChange={(e) => handleChange('hours', e.target.value)} />
                         <Box paddingRight={1} paddingLeft={1}>
-                            <Typography as="label" textColor="neutral600">
+                            <Typography as='label' textColor='neutral600'>
                                 : 
                             </Typography>
                         </Box>
                         <TextInput 
-                            value={FormatMinutes(minutes)} 
-                            aria-label="&nbsp;"
-                            onChange={(e) => handleChange("minutes", e.target.value)} />
+                            value={FormatLeadingZeros(minutes)} 
+                            aria-label='&nbsp;'
+                            onChange={(e) => handleChange('minutes', e.target.value)} />
+
+                        {
+                       withSeconds  && (
+                                 <Box paddingRight={1} paddingLeft={1}>
+                                    <Typography as='label' textColor='neutral600'>
+                                        : 
+                                    </Typography>
+                                </Box>)
+                        }
+                        {
+                        withSeconds && (<TextInput 
+                                value={FormatLeadingZeros(seconds)} 
+                                aria-label='&nbsp;' onChange={(e) => handleChange("seconds", e.target.value)} />
+                                )
+                        }
                     </Flex>
                 
             <FieldHint/>
