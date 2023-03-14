@@ -4,7 +4,7 @@
 
 **Company**: Ping Pong Technologies S.L.
 
-**Version**: 1.0.8
+**Version**: 1.0.10
 
 **Last Modified**: March 2023
 
@@ -20,4 +20,4 @@ The Api returns you an array of the ON items.
 
 ### Duration *(v1)*
 
-It allows to create a field for duration in hh:mm:ss. Data is saved in seconds, and the seconds filed is optional, can be shown or hidden as you want from the advanced options.
+It allows to create a field for duration in hh:mm:ss. Data is saved in seconds, and the seconds field is optional, can be shown or hidden as you want from the advanced options.
