@@ -2,3 +2,5 @@
 node_modules/
 plugin_ppt_customfields.sublime-project
 plugin_ppt_customfields.sublime-workspace
+
+.DS_Store

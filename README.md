@@ -1,16 +1,22 @@
 # Strapi plugin ppt-customfields
 
-**Author**: Sergi Penya Tapia
+
+Strapi Plugin to encapsulate custom fields created by Ping Pong Technologies.
+
 
 **Company**: Ping Pong Technologies S.L.
 
-**Version**: 1.0.10
+**Version**: 1.0.11
 
 **Last Modified**: March 2023
 
-Strapi Plugin to encapsulate all custom fields we will create.
+**Author**: Sergi Penya Tapia
 
-## Customfields:
+
+## Features
+
+The characteristics are detailed below for each custom field individually.
+You can configure them from the field options. The configuration parameters are shown below.
 
 ### Multiboolean *(v1)*
 
@@ -18,6 +24,38 @@ It allows to create a list of boolean flags, that is saved together in one Json 
 You can define the on and off text for the toggleButtons (true-false, Yes-No), and the list of items you want to evaluate.
 The Api returns you an array of the ON items.
 
+
+
+#### Configuration
+
+| property       | type (default)   | description                                                                                                    |
+| -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------|
+| `on_text`      | string (`null`)  | Text for the off-state                                                                                         |
+| `off_text`     | string (`null`)  | Text for the off-state                                                                                         |               
+| `list`         | array  (`{}`)    | Array of strings textarea-enum, with every boolean name we want to check                                       |
+
+
+
 ### Duration *(v1)*
 
 It allows to create a field for duration in hh:mm:ss. Data is saved in seconds, and the seconds field is optional, can be shown or hidden as you want from the advanced options.
+
+#### Configuration
+
+| property       | type (default)   | description                                                                                                    |
+| -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------|
+| `withSeconds`  | boolean (`false`)| If you want it as hh:mm or hh:mm:ss                                                                            |
+
+
+## Installation
+
+To install this plugin, you need to add an NPM dependency to your Strapi application.
+
+```sh
+# Using Yarn
+yarn add strapi-plugin-ppt-customfields
+
+# Or using NPM
+npm install strapi-plugin-ppt-customfields
+```
+
