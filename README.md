@@ -5,12 +5,11 @@ Strapi Plugin to encapsulate custom fields created by Ping Pong Technologies.
 
 
 **Company**: Ping Pong Technologies S.L.
-
-**Version**: 1.0.11
-
+**Version**: 1.0.12
 **Last Modified**: March 2023
-
 **Author**: Sergi Penya Tapia
+
+
 
 
 ## Features
@@ -45,6 +44,8 @@ It allows to create a field for duration in hh:mm:ss. Data is saved in seconds, 
 | property       | type (default)   | description                                                                                                    |
 | -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------|
 | `withSeconds`  | boolean (`false`)| If you want it as hh:mm or hh:mm:ss                                                                            |
+
+
 
 
 ## Installation
