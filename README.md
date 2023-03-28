@@ -6,7 +6,7 @@ Strapi Plugin to encapsulate custom fields created by Ping Pong Technologies.
 
 **Company**: Ping Pong Technologies S.L.
 
-**Version**: 1.0.14
+**Version**: 1.0.17
 
 **Last Modified**: March 2023
 
@@ -40,7 +40,7 @@ The Api returns you an array of the ON items.
 
 ### Duration *(v1)*
 
-It allows to create a field for duration in hh:mm:ss. Data is saved in seconds, and the seconds field is optional, can be shown or hidden as you want from the advanced options.
+It allows to create a field for duration in hh:mm or hh:mm:ss. Data is saved in seconds, and the seconds field is optional, can be shown or hidden as you want from the advanced options.
 
 #### Configuration
 

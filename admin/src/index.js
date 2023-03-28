@@ -68,6 +68,7 @@ export default {
 						items: [{
 							name: 'options.list',
 							type: 'textarea-enum',
+							defaultValue: [],
 							intlLabel: {
 								id: 'ppt-customfields.multiboolean.options-title',
 								defaultMessage: 'Options (one per line)',
@@ -105,6 +106,7 @@ export default {
 			options: {advanced: [{
 						name: 'options.withSeconds',
 						type: 'checkbox',
+						defaultValue: false,
 						intlLabel: {
 							id: 'ppt-customfields.duration.has-seconds-title',
 							defaultMessage: 'With seconds field.',
@@ -115,9 +117,7 @@ export default {
 						},
 						
 					}]}
-
 		});
-
 
 		app.registerPlugin({
 			id: pluginId,

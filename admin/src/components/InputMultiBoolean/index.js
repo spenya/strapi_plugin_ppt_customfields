@@ -23,6 +23,8 @@ const InputMultiBoolean = ({ name, onChange, value, options, attribute, required
   
   // Load options from Content Type Builder and transform them to include label and value properties
   options = useMemo(() => {
+    if(attribute['options'] != undefined)
+    {
     return (attribute['options'].list || []).map((option, index) => {
       const label = option;
       if (!label) return null;
@@ -32,10 +34,15 @@ const InputMultiBoolean = ({ name, onChange, value, options, attribute, required
 
       return { label, value };
     }).filter(Boolean);
-  }, [attribute]);
+  }
+  else
+    {
+      return null;
+    }}, [attribute]);
 
   // Update selectedOptions state when the value prop changes
   useEffect(() => {
+    if(value=="") value = null;
     const selectedLabels = JSON.parse(value) || [];
     const selectedOptions = options.filter(option => selectedLabels.includes(option.label));
     setSelectedOptions(selectedOptions);

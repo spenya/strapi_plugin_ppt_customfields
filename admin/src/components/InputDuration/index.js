@@ -25,13 +25,14 @@ const InputDuration = ({ name, onChange, value, options, attribute, required, er
     let restSeconds =  value % 3600;
     var minutes = Math.floor(restSeconds/60);
     var seconds = restSeconds % 60;
-
-    var withSeconds = attribute['options'].withSeconds;
-    if(withSeconds == undefined) withSeconds = false;
-
+    var withSeconds = false;
+    if( attribute['options'].withSeconds != undefined)
+    {
+        withSeconds = attribute['options'].withSeconds;
+    }
+    
     console.log("withSeconds: " + withSeconds);
-            
-                        
+                                
     const FormatLeadingZeros = (m) => {
 
         if(m<10)
