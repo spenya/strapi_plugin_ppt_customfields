@@ -32,7 +32,7 @@ The Api returns you an array of the ON items.
 
 | property       | type (default)   | description                                                                                                    |
 | -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------|
-| `on_text`      | string (`null`)  | Text for the off-state                                                                                         |
+| `on_text`      | string (`null`)  | Text for the on-state                                                                                         |
 | `off_text`     | string (`null`)  | Text for the off-state                                                                                         |               
 | `list`         | array  (`{}`)    | Array of strings textarea-enum, with every boolean name we want to check                                       |
 
